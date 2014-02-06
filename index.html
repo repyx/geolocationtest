@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <input type="button" value="where am i?" onclick="geolocation()">
+   <!-- <input type="button" value="where am i?">-->
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+
+   /* $('button').click(function() 
+    {
+        geolocation();
+        alert('megy');
+    });*/
+
+
+    function geolocation() 
+    {
+
+        var options = { enableHighAccuracy: true };
+            watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+
+        function onSuccess(position) 
+        {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            //localStorage.setItem("latitude", lat);
+            //localStorage.setItem("longitude", lng);
+
+            alert("lat: " + lat + "long: " + lng)
+        }
+
+        function onError(error) 
+        {
+          alert("error: " + error.message);
+            localStorage.setItem("error", error.message);
+        }
+
+    }
+
+    function removestorage() 
+    {
+        localStorage.removeItem("latitude");
+    }
+
+</script>
+
+<!-- <script src=".js"></script>-->
+</body>
+</html>
+
